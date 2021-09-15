@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import AuthContext from '../store/auth.context'
+import Header from './Layout/Header'
+import Home from './Pages/Home'
+import Login from './Pages/Login'
 
 function App () {
+  const authContext = useContext(AuthContext)
+
   return (
-    <div className="absolute inset-0 w-full h-full bg-black text-white flex items-center justify-center">
-      <div className="text-5xl font-thin">React.App</div>
+    <div>
+      <Header/>
+
+      <div className="w-1/2 mx-auto mt-16 px-4">
+        {authContext.isLoggedIn && <Home/>}
+        {!authContext.isLoggedIn && <Login/>}
+      </div>
     </div>
   )
 }
